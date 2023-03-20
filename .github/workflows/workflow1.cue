@@ -10,13 +10,14 @@ _workflow1: _#bashWorkflow & {
 				_#step & {
 					id: "unityTrailer"
 					run: """
-						echo "unityTrailer=$(git log -1 --pretty='%(trailers:key=Unity-Trailer,valueonly)')" >> $GITHUB_OUTPUT
-						"""
-				},
-				_#step & {
-					run: """
-						echo CL is ${{ fromJSON(steps.unityTrailer.outputs.unityTrailer).CL }}
-						echo patchset is ${{ fromJSON(steps.unityTrailer.outputs.unityTrailer).patchset }}
+						x="$(git log -1 --pretty='%(trailers:key=Unity-Trailer,valueonly)')"
+						if [ "$x" == "" ]
+						then
+							x=null
+						fi
+						echo "unityTrailer<<EOD" >> $GITHUB_OUTPUT
+						echo "$x" >> $GITHUB_OUTPUT
+						echo "EOD" >> $GITHUB_OUTPUT
 						"""
 				},
 				_#step & {
@@ -28,7 +29,8 @@ _workflow1: _#bashWorkflow & {
 				_#step & {
 					if: "${{ fromJSON(steps.unityTrailer.outputs.unityTrailer) != null }}"
 					run: """
-						echo "Trailer set!"
+						echo CL is ${{ fromJSON(steps.unityTrailer.outputs.unityTrailer).CL }}
+						echo patchset is ${{ fromJSON(steps.unityTrailer.outputs.unityTrailer).patchset }}
 						"""
 				},
 			]
