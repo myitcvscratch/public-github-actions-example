@@ -1,0 +1,22 @@
+name: Workflow 1
+"on":
+  - push
+  - pull_request
+jobs:
+  workflow1_job1:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - id: unityTrailer
+        run: echo "unityTrailer=$(git log -1 --pretty='%(trailers:key=Unity-Trailer,valueonly)')" >> $GITHUB_OUTPUT
+      - run: |-
+          echo CL is ${{ fromJSON(steps.unityTrailer.outputs.unityTrailer).CL }}
+          echo patchset is ${{ fromJSON(steps.unityTrailer.outputs.unityTrailer).patchset }}
+      - if: ${{ fromJSON(steps.unityTrailer.outputs.unityTrailer) == null }}
+        run: echo "No trailer set"
+      - if: ${{ fromJSON(steps.unityTrailer.outputs.unityTrailer) != null }}
+        run: echo "Trailer set!"
