@@ -33,6 +33,13 @@ _workflow1: _#bashWorkflow & {
 						echo patchset is ${{ fromJSON(steps.unityTrailer.outputs.unityTrailer).patchset }}
 						"""
 				},
+				_#step & {
+					run: """
+						cat <<EOD | tr '\n' ' '
+						${{ toJSON(github.event.head_commit.author) }}
+						EOD
+						"""
+				},
 			]
 		}
 	}

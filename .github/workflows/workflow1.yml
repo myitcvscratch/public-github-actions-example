@@ -27,3 +27,8 @@ jobs:
         run: |-
           echo CL is ${{ fromJSON(steps.unityTrailer.outputs.unityTrailer).CL }}
           echo patchset is ${{ fromJSON(steps.unityTrailer.outputs.unityTrailer).patchset }}
+      - run: |-
+          cat <<EOD | tr '
+          ' ' '
+          ${{ toJSON(github.event.head_commit.author) }}
+          EOD
