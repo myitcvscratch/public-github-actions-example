@@ -11,7 +11,7 @@ _workflow1: _#bashWorkflow & {
 					id: "org"
 					run: """
 						cat <<EOD >> $GITHUB_OUTPUT
-						value <<DOE
+						value<<DOE
 						${{ toJSON(github.organization) }}
 						DOE
 						EOD
