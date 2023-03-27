@@ -18,6 +18,10 @@ jobs:
           ${{ toJSON(github.organization) }}
           DOE
           EOD
+      - run: |-
+          cat <<EOD
+          ${{ toJSON(steps) }}
+          EOD
       - run: echo We have org ${{ fromJSON(steps.org.outputs.value).login }}
       - id: unityTrailer
         run: |-

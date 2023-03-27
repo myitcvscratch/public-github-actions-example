@@ -19,6 +19,13 @@ _workflow1: _#bashWorkflow & {
 				},
 				_#step & {
 					run: """
+						cat <<EOD
+						${{ toJSON(steps) }}
+						EOD
+						"""
+				},
+				_#step & {
+					run: """
 						echo We have org ${{ fromJSON(steps.org.outputs.value).login }}
 						"""
 				},
