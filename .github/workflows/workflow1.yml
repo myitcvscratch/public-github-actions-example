@@ -4,11 +4,14 @@ name: Workflow 1
   - pull_request
 jobs:
   workflow1_job1:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     defaults:
       run:
         shell: bash
     steps:
+      - run: |-
+          cd d:/
+          ls
       - name: Checkout code
         uses: actions/checkout@v3
       - id: org
