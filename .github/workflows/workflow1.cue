@@ -8,10 +8,18 @@ _workflow1: _#bashWorkflow & {
 			steps: [
 				_#checkoutCode,
 				_#step & {
+					id: "org"
 					run: """
-						cat <<EOD
-						${{ toJSON(github) }}
+						cat <<EOD >> $GITHUB_OUTPUT
+						value <<DOE
+						${{ toJSON(github.organization) }}
+						DOE
 						EOD
+						"""
+				},
+				_#step & {
+					run: """
+						echo We have org ${{ fromJSON(steps.org.outputs.value).login }}
 						"""
 				},
 				_#step & {
