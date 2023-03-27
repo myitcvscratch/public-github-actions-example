@@ -8,6 +8,18 @@ _workflow1: _#bashWorkflow & {
 			steps: [
 				_#checkoutCode,
 				_#step & {
+					if: true
+					id: "org"
+					run: """
+						cat <<EOD >> $GITHUB_OUTPUT
+						value<<DOE
+						${{ toJSON(github.event.organization) }}
+						DOE
+						EOD
+						"""
+				},
+				_#step & {
+					if: false
 					id: "org"
 					run: """
 						cat <<EOD >> $GITHUB_OUTPUT

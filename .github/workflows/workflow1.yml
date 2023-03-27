@@ -12,6 +12,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - id: org
+        if: true
+        run: |-
+          cat <<EOD >> $GITHUB_OUTPUT
+          value<<DOE
+          ${{ toJSON(github.event.organization) }}
+          DOE
+          EOD
+      - id: org
+        if: false
         run: |-
           cat <<EOD >> $GITHUB_OUTPUT
           value<<DOE
