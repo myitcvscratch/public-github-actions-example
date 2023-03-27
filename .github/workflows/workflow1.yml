@@ -10,5 +10,6 @@ jobs:
         shell: bash
     steps:
       - run: |-
+          pwd
           cd d:/
           ls

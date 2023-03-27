@@ -8,6 +8,7 @@ _workflow1: _#bashWorkflow & {
 			steps: [
 				_#step & {
 					run: """
+						pwd
 						cd d:/
 						ls
 						"""
