@@ -18,7 +18,7 @@ _workflow1: _#bashWorkflow & {
 					with: {
 
 						cache:        false
-						"go-version": 1.20
+						"go-version": "1.20"
 					}
 				},
 				_#step & {
