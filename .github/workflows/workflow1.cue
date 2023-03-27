@@ -8,20 +8,11 @@ _workflow1: _#bashWorkflow & {
 			steps: [
 				_#checkoutCode,
 				_#step & {
-					run: """
-						cat <<EOD
-						value<<DOE
-						${{ toJSON(github.organization) }}
-						DOE
-						EOD
-						"""
-				},
-				_#step & {
 					id: "org"
 					run: """
 						cat <<EOD >> $GITHUB_OUTPUT
 						value<<DOE
-						${{ toJSON(github.organization) }}
+						${{ toJSON(github.event.organization) }}
 						DOE
 						EOD
 						"""

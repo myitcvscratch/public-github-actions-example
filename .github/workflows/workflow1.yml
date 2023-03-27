@@ -11,17 +11,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - run: |-
-          cat <<EOD
-          value<<DOE
-          ${{ toJSON(github.organization) }}
-          DOE
-          EOD
       - id: org
         run: |-
           cat <<EOD >> $GITHUB_OUTPUT
           value<<DOE
-          ${{ toJSON(github.organization) }}
+          ${{ toJSON(github.event.organization) }}
           DOE
           EOD
       - run: |-
