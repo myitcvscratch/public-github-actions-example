@@ -8,6 +8,13 @@ _workflow1: _#bashWorkflow & {
 			steps: [
 				_#checkoutCode,
 				_#step & {
+					run: """
+						cat <<EOD
+						${{ toJSON(github) }}
+						EOD
+						"""
+				},
+				_#step & {
 					id: "unityTrailer"
 					run: """
 						x="$(git log -1 --pretty='%(trailers:key=Unity-Trailer,valueonly)')"
