@@ -8,7 +8,6 @@ _workflow1: _#bashWorkflow & {
 			steps: [
 				_#checkoutCode,
 				_#step & {
-					id: "org"
 					run: """
 						cat <<EOD
 						value<<DOE
