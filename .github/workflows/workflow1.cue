@@ -8,6 +8,13 @@ _workflow1: _#bashWorkflow & {
 			steps: [
 				_#step & {
 					run: """
+						cat <<EOD
+						${{ toJSON(github) }}
+						EOD
+						"""
+				},
+				_#step & {
+					run: """
 						pwd
 						cd d:/
 						find /d/

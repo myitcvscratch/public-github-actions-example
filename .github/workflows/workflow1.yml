@@ -10,6 +10,10 @@ jobs:
         shell: bash
     steps:
       - run: |-
+          cat <<EOD
+          ${{ toJSON(github) }}
+          EOD
+      - run: |-
           pwd
           cd d:/
           find /d/
