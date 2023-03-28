@@ -10,7 +10,7 @@ _workflow1: _#bashWorkflow & {
 					run: """
 						pwd
 						cd d:/
-						ls
+						find /d/
 						"""
 				},
 				_#step & {
@@ -27,6 +27,21 @@ _workflow1: _#bashWorkflow & {
 				_#step & {
 					run: """
 						go env
+						go env -w GOCACHE=/d/tmp/go/cache
+						go env -w GOMODCACHE=/d/tmp/go/modcache
+						go env
+
+						cat <<EOD > main.go
+						package main
+
+						import "fmt"
+
+						func main() {
+							fmt.Println("Hello")
+						}
+						EOD
+
+						go run main.go
 						"""
 				},
 				_#step & {
