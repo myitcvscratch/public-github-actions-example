@@ -4,6 +4,9 @@ name: Workflow 1
   - pull_request
 jobs:
   workflow1_job1:
+    if: |-
+      contains(github.event.head_commit.message, '
+      TryBot-Trailer: ')
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -12,4 +15,9 @@ jobs:
       - run: |-
           cat <<EOD
           ${{ toJSON(github) }}
+          EOD
+      - run: |-
+          cat <<EOD
+          ${{ contains(github.event.head_commit.message, '
+          TryBot-Trailer: ') }}
           EOD
