@@ -4,7 +4,7 @@ name: Workflow 1
   - pull_request
 jobs:
   workflow1_job1:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
@@ -13,33 +13,3 @@ jobs:
           cat <<EOD
           ${{ toJSON(github) }}
           EOD
-      - run: |-
-          pwd
-          cd d:/
-          find /d/
-      - uses: actions/setup-go@v4
-        with:
-          cache: false
-          go-version: "1.20"
-      - uses: actions/checkout@v3
-      - run: |-
-          go env
-          go env -w GOCACHE=/d/tmp/go/cache
-          go env -w GOMODCACHE=/d/tmp/go/modcache
-          go env
-
-          cat <<EOD > main.go
-          package main
-
-          import "fmt"
-
-          func main() {
-          	fmt.Println("Hello")
-          }
-          EOD
-
-          go run main.go
-          go env
-      - run: |-
-          pwd
-          find /d/tmp/go
