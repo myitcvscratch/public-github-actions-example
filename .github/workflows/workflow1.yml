@@ -35,4 +35,5 @@ jobs:
           EOD
 
           go run main.go
+          go env
       - run: pwd

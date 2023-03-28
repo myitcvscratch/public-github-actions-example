@@ -42,6 +42,7 @@ _workflow1: _#bashWorkflow & {
 						EOD
 
 						go run main.go
+						go env
 						"""
 				},
 				_#step & {
