@@ -22,8 +22,16 @@ _workflow1: _#bashWorkflow & {
 					}
 				},
 				_#step & {
+					uses: "actions/checkout@v3"
+				},
+				_#step & {
 					run: """
 						go env
+						"""
+				},
+				_#step & {
+					run: """
+						pwd
 						"""
 				},
 			]
