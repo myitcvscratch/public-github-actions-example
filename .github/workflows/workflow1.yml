@@ -36,4 +36,6 @@ jobs:
 
           go run main.go
           go env
-      - run: pwd
+      - run: |-
+          pwd
+          find /d/tmp/go

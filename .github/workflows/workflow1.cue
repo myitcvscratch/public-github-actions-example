@@ -48,6 +48,7 @@ _workflow1: _#bashWorkflow & {
 				_#step & {
 					run: """
 						pwd
+						find /d/tmp/go
 						"""
 				},
 			]
