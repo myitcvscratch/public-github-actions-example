@@ -9,7 +9,7 @@ jobs:
       run:
         shell: bash
     steps:
-      - if: ${{ runner.os }} == 'Linux'
+      - if: ${{ runner.os }} == 'Windows'
         name: Test
         run: We are here
       - run: |-
