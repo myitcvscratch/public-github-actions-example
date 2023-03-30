@@ -8,9 +8,9 @@ _workflow1: _#bashWorkflow & {
 			steps: [
 				_#step & {
 					name: "Test"
-					if:   "${{ runner.os }} == 'Windows'"
+					if:   " runner.os == 'Windows'"
 					run: """
-						We are here
+						echo We are here
 						"""
 				},
 				_#step & {
@@ -27,7 +27,7 @@ _workflow1: _#bashWorkflow & {
 						EOD
 						"""
 				}
-				// if:        "contains(github.event.head_commit.message, '\nTryBotTrailer: ')",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+				// if:        "contains(github.event.head_commit.message, '\nTryBotTrailer: ')",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 			]
 		}
 	}

@@ -9,9 +9,9 @@ jobs:
       run:
         shell: bash
     steps:
-      - if: ${{ runner.os }} == 'Windows'
+      - if: ' runner.os == ''Windows'''
         name: Test
-        run: We are here
+        run: echo We are here
       - run: |-
           cat <<EOD
           ${{ toJSON(github) }}
