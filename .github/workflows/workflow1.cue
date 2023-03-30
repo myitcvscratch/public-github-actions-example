@@ -7,27 +7,22 @@ _workflow1: _#bashWorkflow & {
 			"runs-on": "ubuntu-latest"
 			steps: [
 				_#step & {
-					name: "Test"
-					if:   " ${{ runner.os }} == 'Windows'"
-					run: """
-						echo We are here
-						"""
-				},
-				_#step & {
 					run: """
 						cat <<EOD
-						${{ toJSON(runner) }}
+						${{ toJSON(github.event) }}
 						EOD
 						"""
 				},
 				_#step & {
-					run: """
-						cat <<EOD
-						${{ contains(github.event.head_commit.message, '\nTryBot-Trailer: ') }}
-						EOD
-						"""
-				}
-				// if:        "contains(github.event.head_commit.message, '\nTryBotTrailer: ')",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+					name: "No braces"
+					if:   "contains(github.event.head_commit.message, '\nTryBot-Trailer: {')"
+					run:  "echo No braces matched"
+				},
+				_#step & {
+					name: "Braces"
+					if:   "${{ contains(github.event.head_commit.message, '\nTryBot-Trailer: {') }}"
+					run:  "echo No braces matched"
+				},
 			]
 		}
 	}
