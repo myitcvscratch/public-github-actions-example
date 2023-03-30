@@ -10,10 +10,8 @@ jobs:
         shell: bash
     steps:
       - if: ${{ runner.os }} == 'Linux'
-        run: |-
-          cat <<EOD
-          ${{ toJSON(github) }}
-          EOD
+        name: Test
+        run: We are here
       - run: |-
           cat <<EOD
           ${{ toJSON(github) }}

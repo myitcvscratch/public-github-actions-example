@@ -7,11 +7,10 @@ _workflow1: _#bashWorkflow & {
 			"runs-on": "ubuntu-latest"
 			steps: [
 				_#step & {
-					if: "${{ runner.os }} == 'Linux'"
+					name: "Test"
+					if:   "${{ runner.os }} == 'Linux'"
 					run: """
-						cat <<EOD
-						${{ toJSON(github) }}
-						EOD
+						We are here
 						"""
 				},
 				_#step & {
@@ -28,7 +27,7 @@ _workflow1: _#bashWorkflow & {
 						EOD
 						"""
 				}
-				// if:        "contains(github.event.head_commit.message, '\nTryBotTrailer: ')",,,,,,,,,,,,,,,,,,,,,,,,,,
+				// if:        "contains(github.event.head_commit.message, '\nTryBotTrailer: ')",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 			]
 		}
 	}
