@@ -14,7 +14,7 @@ jobs:
         run: echo We are here
       - run: |-
           cat <<EOD
-          ${{ toJSON(github) }}
+          ${{ toJSON(runner) }}
           EOD
       - run: |-
           cat <<EOD

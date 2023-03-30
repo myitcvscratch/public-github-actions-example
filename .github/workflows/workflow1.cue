@@ -16,7 +16,7 @@ _workflow1: _#bashWorkflow & {
 				_#step & {
 					run: """
 						cat <<EOD
-						${{ toJSON(github) }}
+						${{ toJSON(runner) }}
 						EOD
 						"""
 				},
@@ -27,7 +27,7 @@ _workflow1: _#bashWorkflow & {
 						EOD
 						"""
 				}
-				// if:        "contains(github.event.head_commit.message, '\nTryBotTrailer: ')",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+				// if:        "contains(github.event.head_commit.message, '\nTryBotTrailer: ')",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 			]
 		}
 	}
