@@ -8,8 +8,16 @@ _workflow1: _#bashWorkflow & {
 			steps: [
 				_#step & {
 					run: """
-						cat <<EOD
-						${{ toJSON(github.event) }}
+						cat <<EOD | jq -c '. as $in | reduce (["type"] + keys)[] as $key ({}; . + { ($key): $in[$key] })'
+						{
+						  "payload": {
+						    "changeID": "Ic230c8e71dbde99e3f621ea6e66d48ff73bd3b3e",
+						    "ref": "refs/changes/36/551936/6",
+						    "commit": "06111c4686a9e6a30e638edff1383b7a746279f7",
+						    "branch": "alpha"
+						  },
+						  "type": "trybot"
+						}
 						EOD
 						"""
 				},
