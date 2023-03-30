@@ -4,7 +4,6 @@ _workflow1: _#bashWorkflow & {
 	name: "Workflow 1"
 	jobs: {
 		workflow1_job1: {
-			if:        "contains(github.event.head_commit.message, '\nTryBot-Trailer: ')"
 			"runs-on": "ubuntu-latest"
 			steps: [
 				_#step & {
@@ -29,7 +28,7 @@ _workflow1: _#bashWorkflow & {
 						EOD
 						"""
 				}
-				// if:        "contains(github.event.head_commit.message, '\nTryBotTrailer: ')",,,,,,,,,,,,,,,,,,,,,,,,
+				// if:        "contains(github.event.head_commit.message, '\nTryBotTrailer: ')",,,,,,,,,,,,,,,,,,,,,,,,,,
 			]
 		}
 	}
