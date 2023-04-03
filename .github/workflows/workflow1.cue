@@ -32,7 +32,6 @@ _workflow1: _#bashWorkflow & {
 						  git fetch origin master
 
 						  git fetch origin refs/changes/52/551352/5
-						  git log -1
 						  git checkout -b master FETCH_HEAD
 						  git log -1
 						  echo "here"
