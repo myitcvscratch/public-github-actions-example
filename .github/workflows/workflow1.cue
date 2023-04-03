@@ -11,6 +11,7 @@ _workflow1: _#bashWorkflow & {
 						  set -x
 
 						  git --version
+						  git config -l
 
 						  mkdir tmpgit
 						  cd tmpgit
