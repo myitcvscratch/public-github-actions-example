@@ -1,7 +1,16 @@
 package workflows
 
-_workflow1: _#bashWorkflow & {
-	name: "Workflow 1"
+import (
+	"json.schemastore.org/github"
+)
+
+_#job:  ((github.#Workflow & {}).jobs & {x: _}).x
+_#step: ((_#job & {steps:                   _}).steps & [_])[0]
+
+workflows: workflow1: {
+	on: [
+		"push",
+	]
 	jobs: {
 		workflow1_job1: {
 			"runs-on": "ubuntu-latest"
@@ -9,7 +18,7 @@ _workflow1: _#bashWorkflow & {
 				_#step & {
 					run: """
 						cat <<EOD
-						{{ toJSON{github} }}
+						${{ toJSON(github) }}
 						EOD
 						"""
 				},

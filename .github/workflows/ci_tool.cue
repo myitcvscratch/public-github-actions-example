@@ -6,10 +6,10 @@ import (
 )
 
 command: genworkflows: {
-	for w in workflows {
-		"\(w.filename)": file.Create & {
-			filename: w.filename
-			contents: yaml.Marshal(w.workflow)
+	for f, w in workflows {
+		"\(f)": file.Create & {
+			filename: f + ".yml"
+			contents: yaml.Marshal(w)
 		}
 	}
 }
